@@ -3,7 +3,7 @@ description: >
   blog.dynamoo.com Email Miner
 
 prototypes:
-  malconfc2:
+  dynamoominer:
     author: Kevin Breen
     class: dynamoominer.Miner
     development_status: EXPERIMENTAL
