@@ -1,0 +1,16 @@
+{
+    "version": "0.1",
+    "name": "dynamoo-miner",
+    "author": "Kevin Breen",
+    "author_email": "miners@techanarchy.net",
+    "description": "Dynamoo Email Miner",
+    "entry_points": {
+        "minemeld_nodes": {
+            "dynamoominer.Miner": "dynamoominer.node:Miner"
+        },
+        "minemeld_prototypes": {
+            "dynamoominer.prototypes": "dynamoominer:prototypes"
+        }
+    },
+    "manifest_version": 0
+}

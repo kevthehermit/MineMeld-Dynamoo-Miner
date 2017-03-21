@@ -1,0 +1,27 @@
+url: https://github.com/kevthehermit/MineMeld-Dynamoo-Miner
+description: >
+  blog.dynamoo.com Email Miner
+
+prototypes:
+  malconfc2:
+    author: Kevin Breen
+    class: dynamoominer.Miner
+    development_status: EXPERIMENTAL
+    node_type: miner
+    indicator_types: [file.name, email-addr, IPv4, URL]
+    tags:
+      - extension
+      - dynamoo
+    description: >
+      Spam / Malicious Emails from Dynamoo.com
+    config:
+      # source name used in the indicators
+      output_type: email
+      # age out of indicators
+      # disabled, removed when they disappear from the channel
+      age_out:
+        sudden_death: true
+        default: null
+      # flag indicators with share level green
+      attributes:
+        share_level: green
