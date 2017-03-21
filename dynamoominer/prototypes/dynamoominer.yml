@@ -8,7 +8,7 @@ prototypes:
     class: dynamoominer.Miner
     development_status: EXPERIMENTAL
     node_type: miner
-    indicator_types: [file.name, email-addr, IPv4, URL]
+    indicator_types: [file.name, IPv4, URL]
     tags:
       - extension
       - dynamoo
@@ -16,7 +16,7 @@ prototypes:
       Spam / Malicious Emails from Dynamoo.com
     config:
       # source name used in the indicators
-      output_type: email
+      output_type: file.name
       # age out of indicators
       # disabled, removed when they disappear from the channel
       age_out:
