@@ -57,10 +57,12 @@ class Miner(BasePollerFT):
 
 
 
-        all_data = {}
+        all_data = []
 
-
+        counter = 1
         for link in list_links:
+            elem_name = counter
+            counter += 1
             ip_list = []
             url_list = []
             filename_list = []
@@ -114,12 +116,13 @@ class Miner(BasePollerFT):
             except Exception as e:
                 LOG.error("Failed to get URL {0}".format(e))
 
-            all_data[link] = {'iplist': ip_list,
+            all_data.append({'iplist': ip_list,
                               'urllist': url_list,
                               'filenamelist': filename_list,
                               'emaillist': email_list,
-                              'subjectlist': subject_list
-                              }
+                              'subjectlist': subject_list,
+                              'source': link
+                              })
         
         # Return all the lists
 
@@ -127,21 +130,22 @@ class Miner(BasePollerFT):
 
     def _process_item(self, item):
 
+        LOG.error('Type: {0}, data: {1}'.format(type(item), item))
+
         indicator_list = []
 
-        # Convert to Dict
-        item = ast.literal_eval(item)
+        values = item
 
-        for key, values in item.iteritems():
+        if values:
 
             if self.output_type.lower() == 'ip':
                 for ip in values['iplist']:
                     indicator = ip
                     value = {
                         'type': 'IPv4',
-                        'confidence': 50,
+                        'confidence': 80,
                         'IP': ip,
-                        'Report': key
+                        'Report': values['source']
                     }
                     indicator_list.append([indicator, value])
 
@@ -150,9 +154,9 @@ class Miner(BasePollerFT):
                     indicator = url
                     value = {
                         'type': 'URL',
-                        'confidence': 50,
+                        'confidence': 80,
                         'URL': url,
-                        'Report': key
+                        'Report': values['source']
                     }
                     indicator_list.append([indicator, value])
 
@@ -161,9 +165,9 @@ class Miner(BasePollerFT):
                     indicator = filename
                     value = {
                         'type': 'file.name',
-                        'confidence': 50,
+                        'confidence': 80,
                         'file.name': filename,
-                        'Report': key
+                        'Report': values['source']
                     }
                     indicator_list.append([indicator, value])
 
@@ -172,9 +176,9 @@ class Miner(BasePollerFT):
                     indicator = email
                     value = {
                         'type': 'email-addr',
-                        'confidence': 50,
+                        'confidence': 80,
                         'email-addr': email,
-                        'Report': key
+                        'Report': values['source']
                     }
                     indicator_list.append([indicator, value])
         return indicator_list

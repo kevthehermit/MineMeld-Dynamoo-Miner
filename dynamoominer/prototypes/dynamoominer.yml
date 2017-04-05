@@ -3,7 +3,7 @@ description: >
   blog.dynamoo.com Email Miner
 
 prototypes:
-  dynamooemails:
+  emails:
     author: Kevin Breen
     class: dynamoominer.Miner
     development_status: EXPERIMENTAL
