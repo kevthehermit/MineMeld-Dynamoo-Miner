@@ -1,3 +1,4 @@
+import ast
 import logging
 import requests
 import re
@@ -129,7 +130,7 @@ class Miner(BasePollerFT):
         indicator_list = []
 
         # Convert to Dict
-        item = dict(item)
+        item = ast.literal_eval(item)
 
         for key, values in item.iteritems():
 
