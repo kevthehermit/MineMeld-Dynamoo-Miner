@@ -128,6 +128,9 @@ class Miner(BasePollerFT):
 
         indicator_list = []
 
+        # Convert to Dict
+        item = dict(item)
+
         for key, values in item.iteritems():
 
             if self.output_type.lower() == 'ip':
