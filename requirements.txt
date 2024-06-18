@@ -1,3 +1,4 @@
 minemeld-core>=0.9.31b2
 requests
 bs4
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
